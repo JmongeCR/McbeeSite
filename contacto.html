@@ -278,6 +278,111 @@ img   { max-width: 100%; display: block; }
 }
 .btn-call:hover { background: var(--border); }
 
+/* ── FORM ────────────────────────────────────────────────────── */
+.form-section { padding: 80px 0; }
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 64px;
+  align-items: start;
+}
+.form-intro h2 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 500;
+  letter-spacing: -.025em;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 16px;
+  text-wrap: balance;
+}
+.form-intro p { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; }
+.form-perks { display: flex; flex-direction: column; gap: 14px; }
+.perk { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); }
+.perk-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+
+.contact-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 11px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  font-family: var(--font);
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg);
+  outline: none;
+  transition: border-color .15s, background .15s;
+  -webkit-appearance: none;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--green);
+  background: var(--surface);
+}
+.field input::placeholder,
+.field textarea::placeholder { color: var(--muted); opacity: .6; }
+.field select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23527060' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+.field textarea { resize: vertical; min-height: 110px; line-height: 1.55; }
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--green);
+  border: none;
+  border-radius: var(--r-pill);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-submit:hover { opacity: .88; }
+.btn-submit:disabled { opacity: .5; cursor: not-allowed; }
+
+.form-note {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* success/error states */
+.form-msg {
+  display: none;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+.form-msg.success { background: rgba(27,94,47,.1); color: var(--green); display: block; }
+.form-msg.error   { background: rgba(212,118,26,.1); color: var(--amber); display: block; }
+
 /* ── FOOTER ──────────────────────────────────────────────────── */
 .footer { padding: 48px 0; border-top: 1px solid var(--border); }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
@@ -295,6 +400,13 @@ img   { max-width: 100%; display: block; }
 @media (max-width: 900px) {
   .contact-grid { grid-template-columns: 1fr; }
   .channels-grid { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; gap: 40px; }
+  .form-grid .form-intro { order: 2; }
+  .form-grid .contact-form { order: 1; }
+}
+@media (max-width: 480px) {
+  .field-row { grid-template-columns: 1fr; }
+  .contact-form { padding: 24px; }
 }
 @media (max-width: 640px) {
   .nav-links { display: none; }
@@ -472,6 +584,122 @@ img   { max-width: 100%; display: block; }
     </div>
   </div>
 </section>
+
+<!-- ── FORMULARIO ─────────────────────────────────────────────── -->
+<section class="form-section">
+  <div class="wrap">
+    <div class="form-grid">
+
+      <div class="form-intro">
+        <span class="sec-label">Formulario de contacto</span>
+        <h2>Cuéntenos su pedido.</h2>
+        <p>Llene el formulario y le respondemos en el mismo día. Si prefiere algo más inmediato, escríbanos directo por WhatsApp.</p>
+        <div class="form-perks">
+          <div class="perk"><span class="perk-dot"></span>Respuesta el mismo día hábil</div>
+          <div class="perk"><span class="perk-dot"></span>Cotización sin compromiso</div>
+          <div class="perk"><span class="perk-dot"></span>Material incluido en sublimación</div>
+          <div class="perk"><span class="perk-dot"></span>Más de 50 años de experiencia</div>
+        </div>
+      </div>
+
+      <!--
+        FORMSPREE: reemplazá YOUR_FORM_ID con el ID de tu formulario en formspree.io
+        Ej: action="https://formspree.io/f/xabc1234"
+        El correo de destino se configura en el dashboard de Formspree.
+      -->
+      <form
+        class="contact-form"
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+        id="contactForm"
+      >
+        <input type="hidden" name="_replyto" value="artetico506@gmail.com">
+        <input type="hidden" name="_subject" value="Nuevo mensaje desde imprentamcbee.com">
+
+        <div class="field-row">
+          <div class="field">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Juan Pérez" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="telefono">Teléfono / WhatsApp</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="8888-8888" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="servicio">Tipo de servicio</label>
+          <select id="servicio" name="servicio" required>
+            <option value="" disabled selected>Seleccioná un servicio…</option>
+            <option>Sublimación (tazas, camisetas, botellas…)</option>
+            <option>Litografía (tarjetas, folletos, volantes)</option>
+            <option>Banners y pendones</option>
+            <option>Stickers y adhesivos</option>
+            <option>Microperforado</option>
+            <option>Vinil exterior</option>
+            <option>Otro / Consulta general</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="mensaje">Descripción del pedido</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Cuéntenos los detalles: cantidad, medidas, colores, fecha que lo necesita…" required></textarea>
+        </div>
+
+        <div class="form-msg" id="formMsg"></div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Enviar mensaje
+        </button>
+
+        <p class="form-note">Le responderemos a <strong>artetico506@gmail.com</strong> y al correo que ingrese arriba.</p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<script>
+const form = document.getElementById('contactForm');
+const msg  = document.getElementById('formMsg');
+const btn  = document.getElementById('submitBtn');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  btn.disabled = true;
+  btn.textContent = 'Enviando…';
+  msg.className = 'form-msg';
+  msg.textContent = '';
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      msg.className = 'form-msg success';
+      msg.textContent = '¡Mensaje enviado! Le responderemos pronto.';
+      form.reset();
+    } else {
+      throw new Error();
+    }
+  } catch {
+    msg.className = 'form-msg error';
+    msg.textContent = 'Ocurrió un error al enviar. Por favor escríbanos por WhatsApp.';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar mensaje';
+  }
+});
+</script>
 
 <!-- ── FOOTER ─────────────────────────────────────────────────── -->
 <footer class="footer">
